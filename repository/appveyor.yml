@@ -1,5 +1,3 @@
-# appveyor.yml - https://www.appveyor.com/docs/lang/python
----
 image:
   - Visual Studio 2019
 
@@ -24,3 +22,8 @@ install:
 
 test_script:
   - py -m tox
+
+- ps: python -Wignore -m pip install pipenv
+  - ps: rm Pipfile.lock
+  - ps: $PIPENV_QUIET="true"
+  - pipenv run conditional_install
